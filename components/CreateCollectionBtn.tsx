@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import CreateCollectionSheet from './CreateCollectionSheet';
 
 const CreateCollectionBtn = () => {
-    const [open , setOpen] = useState(true);
+    const [open , setOpen] = useState(false);
     const handleOpenChange = (open : boolean) => setOpen(open);
   return (
     <div className='full-w rounded-md bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[1px]'>
