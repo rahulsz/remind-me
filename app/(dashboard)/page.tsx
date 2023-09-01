@@ -4,18 +4,16 @@ import SadFace from "@/components/icons/SadFace";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { prisma } from "@/lib/prisma";
-import { wait } from "@/lib/wait";
-import { UserButton, currentUser } from "@clerk/nextjs";
-import Image from "next/image";
+import { currentUser } from "@clerk/nextjs";
 import { Suspense } from "react";
 
 export default async function Home() {
   return (
     <>
-      <Suspense fallback={<WelcomMsgFallback />}>
+      <Suspense fallback={<WelcomeMsgFallback />}>
         <WelcomMsg />
       </Suspense>
-      <Suspense fallback={<div>Loading Collections...</div>}>
+      <Suspense fallback={<div>Loading collections...</div>}>
         <CollectionList />
       </Suspense>
     </>
@@ -28,17 +26,17 @@ async function WelcomMsg() {
   if (!user) {
     return <div>error</div>;
   }
+
   return (
     <div className="flex w-full mb-12">
       <h1 className="text-4xl font-bold">
-        {" "}
         Welcome, <br /> {user.firstName} {user.lastName}
       </h1>
     </div>
   );
 }
 
-function WelcomMsgFallback() {
+function WelcomeMsgFallback() {
   return (
     <div className="flex w-full mb-12">
       <h1 className="text-4xl font-bold">
@@ -52,8 +50,8 @@ function WelcomMsgFallback() {
 async function CollectionList() {
   const user = await currentUser();
   const collections = await prisma.collection.findMany({
-    include:{
-      tasks : true,
+    include: {
+      tasks: true,
     },
     where: {
       userId: user?.id,
@@ -63,21 +61,21 @@ async function CollectionList() {
   if (collections.length === 0) {
     return (
       <div className="flex flex-col gap-5">
-      <Alert>
-        <SadFace />
-        <AlertTitle>There are no collections yet!</AlertTitle>
-        <AlertDescription>
-          Create a collection to get started
-        </AlertDescription>
-      </Alert>
-      <CreateCollectionBtn />
-    </div>
+        <Alert>
+          <SadFace />
+          <AlertTitle>There are no collections yet!</AlertTitle>
+          <AlertDescription>
+            Create a collection to get started
+          </AlertDescription>
+        </Alert>
+        <CreateCollectionBtn />
+      </div>
     );
   }
-  
+
   return (
-    
     <>
+      
       <div className="flex flex-col gap-4 mt-6">
         <CreateCollectionBtn />
         {collections.map((collection) => (
@@ -85,8 +83,5 @@ async function CollectionList() {
         ))}
       </div>
     </>
-
-  )
-   
-
+  );
 }
