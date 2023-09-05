@@ -1,4 +1,5 @@
-![remind_me_thumbnail](https://github.com/Kliton/fullstack_remindMe_youtube_video/assets/10452377/39a757d3-1a79-4d70-b91e-deb9edb4b8c8)
+![01](https://github.com/rahulsz/remind-me/assets/130664248/db9df8eb-0186-445e-b5bb-e3458c98d2df)
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
